@@ -66,7 +66,7 @@ class CrGraphicsView(QGraphicsView):
         self.setDragMode(QGraphicsView.ScrollHandDrag)
 
         fakeEvent = QMouseEvent(event.type(),event.localPos(),event.screenPos(),
-                                Qt.MiddleButton, event.buttons()|Qt.LeftButton,event.modifiers())
+                                Qt.LeftButton, event.buttons()|Qt.LeftButton,event.modifiers())
         super().mousePressEvent(fakeEvent)
 
 
