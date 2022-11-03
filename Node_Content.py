@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5 import Qt
 
 
 class NodeContent(QWidget):
@@ -13,18 +15,11 @@ class NodeContent(QWidget):
         self.setLayout(self.layout)
 
         self.wdg_label = QLabel("Some Title")
+        self.wdg_label.setFont(QFont("Ubuntu ", 10))
+        self.wdg_label.setAlignment(Qt.Qt.AlignCenter)
+
         self.layout.addWidget(self.wdg_label)
-        self.layout.addWidget(QTextEdit("foo"))
+        self.layout.addWidget(QTextEdit(""))
 
 
 
-        '''
-        self.myLayout = QVBoxLayout()
-        self.myLayout.setContentsMargins(0, 0, 0, 0)
-        self.setLayout(self.myLayout)
-        .addLayout(grid)
-        self.nLabel = QLabel("some title")
-        self.myLayout.addWidget(self.nLabel)
-        self.myLayout.addWidget(QTextEdit("fool"))
-        self.show()
-        '''
