@@ -21,25 +21,14 @@ class WindowEditor(QWidget):
         # create the scene
         self.myScene = Scene()
         #self.myGrScene =self.myScene.myGrScene
+        node = Node(self.myScene, "My Awesome Node")
+        nodeContent = NodeContent()
 
         # create the graphic view
-        self.view = CrGraphicsView(self.myScene.myGrScene,self)
+        self.view = CrGraphicsView(self.myScene.myGrScene, self)
         self.myLayout.addWidget(self.view)
 
         self.setWindowIcon(QIcon("C:\\Users\\Asem_\\Desktop\\11.png"))
         self.setWindowTitle("VP")
 
-        node = Node(self.myScene, "MY ONLY NODE")
-
-        #self.addDebCont()
         self.show()
-
-    def addDebCont(self):
-        greenBrush = QBrush(Qt.green)
-        outLinePen = QPen(Qt.black)
-        outLinePen.setWidth(2)
-
-        rect = self.myGrScene.addRect(50, 50, 150, 150, outLinePen, greenBrush)
-        rect.setFlag(QGraphicsItem.ItemIsMovable)
-
-        text = self.myGrScene.addText("HELLO")

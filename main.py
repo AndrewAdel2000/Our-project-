@@ -1,12 +1,13 @@
 from PyQt5 import QtWidgets
 import sys
 from Window_Editor import WindowEditor
+from PyQt5.QtWidgets import QMainWindow, QApplication
 
-if __name__ == '__main__':
-    myApp = QtWidgets.QApplication(sys.argv)
+if __name__ == "__main__":
 
+    myApp = QApplication(sys.argv)
     myWindow = WindowEditor()
 
-    myApp.exec_()
+    sys.exit(myApp.exec())
 
 
