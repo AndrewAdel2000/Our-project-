@@ -16,7 +16,7 @@ class CrGraphicScene(QGraphicsScene):
         self.grid_size = 20
         self.grid_Squares = 5
 
-        self.color_light = QColor("#131313")
+        self.color_light = QColor("#635C5C3")
         self.pen_light = QPen(self.color_light)
         self.pen_light.setWidth(1)
 

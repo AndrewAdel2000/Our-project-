@@ -15,7 +15,7 @@ class WindowEditor(QWidget):
     def MyUI(self):
         self.setGeometry(50, 80, 800, 600)
         self.myLayout = QVBoxLayout()
-        self.myLayout.setContentsMargins(5, 5, 5, 5)
+        self.myLayout.setContentsMargins(0,0,0,0)
         self.setLayout(self.myLayout)
 
         # create the scene
@@ -23,7 +23,6 @@ class WindowEditor(QWidget):
         #self.myGrScene =self.myScene.myGrScene
         node = Node(self.myScene, "My Awesome Node")
         nodeContent = NodeContent()
-
         # create the graphic view
         self.view = CrGraphicsView(self.myScene.myGrScene, self)
         self.myLayout.addWidget(self.view)

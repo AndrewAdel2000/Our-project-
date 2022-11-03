@@ -87,6 +87,7 @@ class GraphicsNode(QGraphicsItem):
         self.title_item.setPos(self.title_horizontal_padding, 0)
         self.title_item.setTextWidth(self.width - 2 * self.title_horizontal_padding)
 
+
     def initContent(self):
         self.grContent = QGraphicsProxyWidget(self)
         self.content.setGeometry(self.edge_roundness, self.title_height + self.edge_roundness,
