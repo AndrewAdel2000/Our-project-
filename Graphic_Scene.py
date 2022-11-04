@@ -10,17 +10,17 @@ class CrGraphicScene(QGraphicsScene):
 
         self.scene = scene
 
-        self.BG_Color = QColor("#262626")
+        self.BG_Color = QColor("#212B3B")
         self.setBackgroundBrush(self.BG_Color)
 
         self.grid_size = 20
         self.grid_Squares = 5
 
-        self.color_light = QColor("#635C5C3")
+        self.color_light = QColor("#212B3B")
         self.pen_light = QPen(self.color_light)
         self.pen_light.setWidth(1)
 
-        self.color_dark = QColor("#030303")
+        self.color_dark = QColor("#212B3B")
         self.pen_dark = QPen(self.color_dark)
         self.pen_dark.setWidth(4)
 

@@ -72,8 +72,8 @@ class GraphicsNode(QGraphicsItem):
         self._pen_hovered = QPen(self._color_hovered)
         self._pen_hovered.setWidthF(3.0)
 
-        self._brush_title = QBrush(QColor("#FF313131"))
-        self._brush_background = QBrush(QColor("#E3212121"))
+        self._brush_title = QBrush(QColor("#151A23"))
+        self._brush_background = QBrush(QColor("#1A202C"))
 
     def boundingRect(self):
         """Defining Qt' bounding rectangle"""

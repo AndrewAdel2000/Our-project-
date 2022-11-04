@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import Qt
+from PyQt5.QtCore import *
 
 
 class NodeContent(QWidget):
@@ -16,10 +17,12 @@ class NodeContent(QWidget):
 
         self.wdg_label = QLabel("Some Title")
         self.wdg_label.setFont(QFont("Ubuntu ", 10))
-        self.wdg_label.setAlignment(Qt.Qt.AlignCenter)
-
+        self.wdg_label.setAlignment(Qt.AlignCenter)
+        #self.wdg_label.setStyleSheet('backgroud-color:yellow')
         self.layout.addWidget(self.wdg_label)
-        self.layout.addWidget(QTextEdit(""))
+        self.textEdit=QTextEdit()
+        #self.textEdit.setStyleSheet('background-color:yellow')
+        self.layout.addWidget(self.textEdit)
 
 
 
