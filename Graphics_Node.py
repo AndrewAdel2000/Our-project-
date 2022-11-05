@@ -60,8 +60,8 @@ class GraphicsNode(QGraphicsItem):
 
     def initAssets(self):
         """Initialize ``QObjects`` like ``QColor``, ``QPen`` and ``QBrush``"""
-        self._title_color = QColor("#F87217")
-        self._title_font = QFont("Ubuntu", 10)
+        self._title_color = QColor("#FFFFFF")
+        self._title_font = QFont("Cairo", 10)
 
         self._color = QColor("#ef974d") # 7dod el node nfsha
         self._color_selected = QColor("#F87217") # 7dod el node when selected
