@@ -8,8 +8,8 @@ class QDMGraphicSocket(QGraphicsItem):
         super().__init__(parent)
 
         self.radius = 6
-        self.outline_width = 3
-        self._color_background = QColor("#ED8936")
+        self.outline_width = 0
+        self._color_background = QColor("#F87217")
         self._color_outline = QColor("#FF000000")
 
         self._pen = QPen(self._color_outline)

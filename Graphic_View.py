@@ -15,11 +15,9 @@ class CrGraphicsView(QGraphicsView):
         self.zoomClamp = True
         self.zoom = 10
         self.zoomStep = 1
-        self.zoomRange = [0, 10]
-
+        self.zoomRange = [0, 20]
 
         self.setScene(self.myGrScene)
-
 
     def initUI(self):
         self.setRenderHints(QPainter.Antialiasing | QPainter.HighQualityAntialiasing | QPainter.TextAntialiasing | QPainter.SmoothPixmapTransform)
@@ -34,8 +32,6 @@ class CrGraphicsView(QGraphicsView):
 
         # enable dropping
         self.setAcceptDrops(True)
-
-
 
     def mousePressEvent(self, event: QMouseEvent):
         """Dispatch Qt's mousePress event to corresponding function below"""
@@ -69,7 +65,6 @@ class CrGraphicsView(QGraphicsView):
                                 Qt.LeftButton, event.buttons()|Qt.LeftButton,event.modifiers())
         super().mousePressEvent(fakeEvent)
 
-
     def middleMouseButtonRelease(self, event: QMouseEvent):
         """When Middle mouse button was released"""
         fakeEvent = QMouseEvent(event.type(), event.localPos(), event.screenPos(),
@@ -89,14 +84,7 @@ class CrGraphicsView(QGraphicsView):
     def rightMouseButtonRelease(self,event):
         return super().mouseReleaseEvent(event)
 
-
-    # def wheelEvent(self, event: QWheelEvent):
-    #     adj = (event.angleDelta().y() / 120) * 0.1
-    #     self.scale(1 + adj, 1 + adj)
-
-
     def wheelEvent(self, event: QWheelEvent):
-        """overridden Qt's ``wheelEvent``. This handles zooming"""
         # calculate our zoom Factor
         zoomOutFactor = 1 / self.zoomInFactor
 
@@ -110,8 +98,10 @@ class CrGraphicsView(QGraphicsView):
 
 
         clamped = False
-        if self.zoom < self.zoomRange[0]: self.zoom, clamped = self.zoomRange[0], True
-        if self.zoom > self.zoomRange[1]: self.zoom, clamped = self.zoomRange[1], True
+        if self.zoom < self.zoomRange[0]:
+            self.zoom, clamped = self.zoomRange[0], True
+        if self.zoom > self.zoomRange[1]:
+            self.zoom, clamped = self.zoomRange[1], True
 
         # set scene scale
         if not clamped or self.zoomClamp is False:
