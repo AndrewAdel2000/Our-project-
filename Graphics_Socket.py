@@ -4,12 +4,23 @@ from PyQt5.QtCore import *
 
 
 class QDMGraphicSocket(QGraphicsItem):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, socket_type=1):
         super().__init__(parent)
 
         self.radius = 6
         self.outline_width = 0
         self._color_background = QColor("#F87217")
+        self.outline_width = 3
+        self._colors = [
+            QColor("#ED8936"),
+            QColor("#FF52e220"),
+            QColor("#FF0056a6"),
+            QColor("#FFa86db1"),
+            QColor("#FFb54747"),
+            QColor("#FFdbe220"),
+        ]
+
+        self._color_background = self._colors[socket_type]
         self._color_outline = QColor("#FF000000")
 
         self._pen = QPen(self._color_outline)
@@ -29,3 +40,4 @@ class QDMGraphicSocket(QGraphicsItem):
             2 * (self.radius + self.outline_width),
             2 * (self.radius + self.outline_width),
         )
+
