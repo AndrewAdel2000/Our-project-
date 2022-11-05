@@ -29,7 +29,7 @@ class Node():
 
         counter = 0
         for item in outputs:
-            socket = Socket(node=self, index=counter, position=RIGHT_TOP)
+            socket = Socket(node=self, index=counter, position=RIGHT_BOTTOM)
             counter += 1
             self.outputs.append(socket)
 
