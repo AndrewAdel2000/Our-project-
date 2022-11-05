@@ -10,5 +10,6 @@ if __name__ == "__main__":
 
     sys.exit(myApp.exec())
 
+# edited by amir
 
 
