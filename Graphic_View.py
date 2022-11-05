@@ -97,36 +97,24 @@ class CrGraphicsView(QGraphicsView):
              if self.mode == MODE_NOOP:
                  self.mode = MODE_EDGE_DRAG
                  print("Start dragging edge")
-                 print(" assign start socket")
+                 print("assign start socket")
                  return
 
          if self.mode == MODE_EDGE_DRAG:
-             print('End dragging edge')
-
-             if type(item) is QDMGraphicSocket:
-                 print('  assign End Socket')
+             res = self.edgeDragEnd(item)
+             if res:
                  return
 
-
          super().mousePressEvent(event)
-
 
     def leftMouseButtonRelease(self,event):
 
         item = self.getItemAtClick(event)
 
         if self.mode == MODE_EDGE_DRAG:
-            new_lmb_release_scene_pos = self.mapToScene(event.pos())
-            dist_scene = new_lmb_release_scene_pos - self.last_lmb_click_scene_pos
-
-            if(dist_scene.x() * dist_scene.x() + dist_scene.y() * dist_scene.y()) < EDGE_DRAG_START_THRESHOLD * EDGE_DRAG_START_THRESHOLD:
-                pass
-            else:
-                self.mode = MODE_NOOP
-                print('End dragging edge')
-
-                if type(item) is QDMGraphicSocket:
-                    print('  assign End Socket')
+            if self.distanceBetweenClickAndReleaseIsOff(event):
+                res = self.edgeDragEnd(item)
+                if res:
                     return
 
         super().mouseReleaseEvent(event)
@@ -143,11 +131,22 @@ class CrGraphicsView(QGraphicsView):
         obj = self.itemAt(pos)
         return obj
 
+    def edgeDragEnd(self,item):
+        """return true if skip the rest of the code """
+        self.mode = MODE_NOOP
+        print('End dragging edge')
 
+        if type(item) is QDMGraphicSocket:
+            print('  assign End Socket')
+            return True
 
-    # def wheelEvent(self, event: QWheelEvent):
-    #     adj = (event.angleDelta().y() / 120) * 0.1
-    #     self.scale(1 + adj, 1 + adj)
+        return False
+
+    def distanceBetweenClickAndReleaseIsOff(self,event):
+        new_lmb_release_scene_pos = self.mapToScene(event.pos())
+        dist_scene = new_lmb_release_scene_pos - self.last_lmb_click_scene_pos
+        edge_drag_threshold_sq = EDGE_DRAG_START_THRESHOLD * EDGE_DRAG_START_THRESHOLD
+        return (dist_scene.x() * dist_scene.x() + dist_scene.y() * dist_scene.y()) > edge_drag_threshold_sq
 
 
     def wheelEvent(self, event: QWheelEvent):
