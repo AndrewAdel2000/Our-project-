@@ -3,7 +3,8 @@ from PyQt5.QtGui import *
 from PyQt5 import QtGui
 from Graphic_View import *
 from Node_Scene import *
-from Draw_Node import  *
+from Draw_Node import *
+from Node_Socket import Socket
 
 
 class WindowEditor(QWidget):
@@ -15,31 +16,19 @@ class WindowEditor(QWidget):
     def MyUI(self):
         self.setGeometry(50, 80, 800, 600)
         self.myLayout = QVBoxLayout()
-        self.myLayout.setContentsMargins(5, 5, 5, 5)
+        self.myLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.myLayout)
 
         # create the scene
         self.myScene = Scene()
-        #self.myGrScene =self.myScene.myGrScene
-
+        # self.myGrScene =self.myScene.myGrScene
+        node = Node(self.myScene, "My Awesome Node", inputs=[1, 2, 3], outputs=[1])
+        nodeContent = NodeContent()
         # create the graphic view
-        self.view = CrGraphicsView(self.myScene.myGrScene,self)
+        self.view = CrGraphicsView(self.myScene.myGrScene, self)
         self.myLayout.addWidget(self.view)
 
         self.setWindowIcon(QIcon("C:\\Users\\Asem_\\Desktop\\11.png"))
         self.setWindowTitle("VP")
 
-        node = Node(self.myScene, "MY ONLY NODE")
-
-        #self.addDebCont()
         self.show()
-
-    def addDebCont(self):
-        greenBrush = QBrush(Qt.green)
-        outLinePen = QPen(Qt.black)
-        outLinePen.setWidth(2)
-
-        rect = self.myGrScene.addRect(50, 50, 150, 150, outLinePen, greenBrush)
-        rect.setFlag(QGraphicsItem.ItemIsMovable)
-
-        text = self.myGrScene.addText("HELLO")

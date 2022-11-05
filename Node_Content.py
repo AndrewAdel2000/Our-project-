@@ -1,16 +1,28 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5 import Qt
+from PyQt5.QtCore import *
 
-class NodeContent():
-    def __int__(self,parent=None):
+
+class NodeContent(QWidget):
+    def __init__(self, parent=None):
         super().__init__(parent)
 
         self.initUI()
 
     def initUI(self):
-        self.myLayout = QVBoxLayout()
-        self.myLayout.setContentsMargins(0,0,0,0)
-        self.setLayout(self.myLayout)
+        self.layout = QVBoxLayout()
+        self.layout.setContentsMargins(0,0,0,0)
+        self.setLayout(self.layout)
 
-        self.nLabel = QLabel("some title")
-        self.myLayout.addWidget(self.nLabel)
-        self.myLayout.addWidget(QTextEdit("fool"))
+        self.wdg_label = QLabel("Some Title")
+        self.wdg_label.setFont(QFont("Ubuntu ", 10))
+        self.wdg_label.setAlignment(Qt.AlignCenter)
+        #self.wdg_label.setStyleSheet('backgroud-color:yellow')
+        self.layout.addWidget(self.wdg_label)
+        self.textEdit=QTextEdit()
+        #self.textEdit.setStyleSheet('background-color:yellow')
+        self.layout.addWidget(self.textEdit)
+
+
+

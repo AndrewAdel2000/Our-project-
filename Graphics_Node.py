@@ -4,9 +4,10 @@ from PyQt5.QtGui import *
 
 
 class GraphicsNode(QGraphicsItem):
-    def __init__(self, node,parent=None):
+    def __init__(self, node, parent=None):
         super().__init__(parent)
         self.node = node
+        self.content = self.node.content
         # self.content = self.node.content
 
         # init our flags
@@ -15,6 +16,14 @@ class GraphicsNode(QGraphicsItem):
 
         self.initSizes()
         self.initAssets()
+
+        #init Sockets here
+        self.initSocket()
+
+
+        #init content here
+        self.initContent()
+
         self.initUI()
 
     @property
@@ -28,13 +37,13 @@ class GraphicsNode(QGraphicsItem):
 
     def initSizes(self):
         """Set up internal attributes like `width`, `height`, etc."""
-        self.width = 180
+        self.width = 230
         self.height = 240
-        self.edge_roundness = 10.0
-        self.edge_padding = 10.0
+        self.edge_roundness = 10
+        self.edge_padding = 10
         self.title_height = 24
-        self.title_horizontal_padding = 35.0
-        self.title_vertical_padding = 4.0
+        self.title_horizontal_padding = 35
+        self.title_vertical_padding = 4
 
     def initUI(self):
         """Set up this ``QGraphicsItem``"""
@@ -63,8 +72,8 @@ class GraphicsNode(QGraphicsItem):
         self._pen_hovered = QPen(self._color_hovered)
         self._pen_hovered.setWidthF(3.0)
 
-        self._brush_title = QBrush(QColor("#FF313131"))
-        self._brush_background = QBrush(QColor("#E3212121"))
+        self._brush_title = QBrush(QColor("#151A23"))
+        self._brush_background = QBrush(QColor("#1A202C"))
 
     def boundingRect(self):
         """Defining Qt' bounding rectangle"""
@@ -78,6 +87,16 @@ class GraphicsNode(QGraphicsItem):
         self.title_item.setFont(self._title_font)
         self.title_item.setPos(self.title_horizontal_padding, 0)
         self.title_item.setTextWidth(self.width - 2 * self.title_horizontal_padding)
+
+
+    def initContent(self):
+        self.grContent = QGraphicsProxyWidget(self)
+        self.content.setGeometry(self.edge_roundness, self.title_height + self.edge_roundness,
+                                 self.width - 2 * self.edge_roundness, self.height - 2 * self.edge_roundness - self.title_height)
+        self.grContent.setWidget(self.content)
+
+    def initSocket(self):
+        pass
 
     def onSelected(self):
         self.node.scene.grScene.itemSelected.emit()
@@ -194,6 +213,3 @@ class GraphicsNode(QGraphicsItem):
     #     painter.setBrush(Qt.NoBrush)
     #     painter.drawPath(path_outline.simplified())
     #
-
-
-
