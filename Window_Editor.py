@@ -14,7 +14,7 @@ class WindowEditor(QWidget):
         self.MyUI()
 
     def MyUI(self):
-        self.setGeometry(50, 80, 800, 600)
+        self.setGeometry(90, 80, 1200, 600)
         self.myLayout = QVBoxLayout()
         self.myLayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.myLayout)
@@ -22,13 +22,15 @@ class WindowEditor(QWidget):
         # create the scene
         self.myScene = Scene()
         # self.myGrScene =self.myScene.myGrScene
+
         node = Node(self.myScene, "My Awesome Node", inputs=[1, 2, 3], outputs=[1])
         nodeContent = NodeContent()
+
         # create the graphic view
         self.view = CrGraphicsView(self.myScene.myGrScene, self)
         self.myLayout.addWidget(self.view)
 
-        self.setWindowIcon(QIcon("C:\\Users\\Asem_\\Desktop\\11.png"))
+        self.setWindowIcon(QIcon("VP logo Trial.png"))
         self.setWindowTitle("VP")
 
         self.show()
