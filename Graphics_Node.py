@@ -150,16 +150,15 @@ class GraphicsNode(QGraphicsItem):
         else:
             painter.setPen(self._pen_default if not self.isSelected() else self._pen_selected)
             painter.drawPath(path_outline.simplified())
+            self.initUI()
 
+            def mouseMoveEvent(self, event):
+                super().mouseMoveEvent(event)
+                self.node.updateConnectedEdges()
 
-
-
-
-
-
-
-
-
+            @property
+            def title(self):
+                return self._title
 
     #
     #
